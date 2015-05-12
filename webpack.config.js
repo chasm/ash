@@ -1,5 +1,3 @@
-"use strict" 
-
 const path = require("path")
 const merge = require("./lib/merge")
 
@@ -19,10 +17,10 @@ const common = {
         loaders: [ "style", "css" ]
       }
     ]
-  },
+  }
 }
 
-const mergeConfig = merge.bind(null, common);
+const mergeConfig = merge.bind(null, common)
 
 if (TARGET === "build") {
   module.exports = mergeConfig({})

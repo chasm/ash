@@ -1,8 +1,6 @@
-"use strict"
+require("./stylesheets/main.css")
 
-require('./stylesheets/main.css')
-
-const component = require('./component.js')
-const app = document.getElementById('app')
+const component = require("./component.js")
+const app = document.getElementById("app")
 
 app.appendChild(component())
