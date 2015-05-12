@@ -18,19 +18,19 @@ const common = {
     preLoaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: "jscs-loader"
+        loader: "eslint-loader!jscs-loader",
+        include: path.join(ROOT_PATH, "app")
       }
     ],
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: "babel",
+        loader: "babel-loader",
         include: path.join(ROOT_PATH, "app")
       },
       {
         test: /\.css$/,
-        loaders: [ "style", "css" ]
+        loader: "style-loader!css-loader"
       }
     ]
   }

@@ -3,4 +3,6 @@ import "./stylesheets/main.css"
 import React from "react"
 import App from "./components/app"
 
-React.render(<App />, document.getElementById("app"))
+const main = () => React.render(<App />, document.getElementById("app"))
+
+main()
