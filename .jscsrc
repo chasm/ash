@@ -13,13 +13,13 @@
   "disallowSpaceBeforePostfixUnaryOperators": [ "++", "--" ],
   "disallowTrailingWhitespace": true,
   "disallowYodaConditions": true,
-  "emitErrors": true,
+  "emitErrors": false,
   "esprima": "esprima-fb",
   "excludeFiles": [
     "build/**",
     "node_modules/**"
   ],
-  "failOnHint": true,
+  "failOnHint": false,
   "fileExtensions": [ ".js", ".jsx" ],
   "maximumLineLength": 120,
   "requireAnonymousFunctions": true,

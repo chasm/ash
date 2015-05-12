@@ -12,12 +12,12 @@
     "modules": true
   },
   "rules": {
-    "strict": [ 2, "global" ],
+    "comma-dangle": "always",
+    "eol-last": true,
+    "no-multiple-empty-lines": true,
     "no-underscore-dangle": false,
     "no-use-before-define": false,
-    "eol-last": true,
     "quotes": [ 2, "double" ],
-    "comma-dangle": "always",
     "react/jsx-boolean-value": 1,
     "react/jsx-quotes": 1,
     "react/jsx-no-undef": 1,
@@ -30,6 +30,7 @@
     "react/react-in-jsx-scope": 1,
     "react/self-closing-comp": 1,
     "react/wrap-multilines": 1,
-    "semi": [ 2, "never" ]
+    "semi": [ 2, "never" ],
+    "strict": [ 2, "global" ]
   }
 }

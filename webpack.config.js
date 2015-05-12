@@ -1,11 +1,15 @@
 const path = require("path")
+const webpack = require("webpack")
 const merge = require("./lib/merge")
 
 const TARGET = process.env.TARGET
 const ROOT_PATH = path.resolve(__dirname)
 
 const common = {
-  entry: [ path.join(ROOT_PATH, "app/main.js") ],
+  entry: [ path.join(ROOT_PATH, "app/main.jsx") ],
+  resolve: {
+    extensions: [ "", ".js", ".jsx" ],
+  },
   output: {
     path: path.resolve(ROOT_PATH, "build"),
     filename: "bundle.js",
@@ -13,12 +17,17 @@ const common = {
   module: {
     preLoaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: "jscs-loader"
       }
     ],
     loaders: [
+      {
+        test: /\.jsx?$/,
+        loader: "babel",
+        include: path.join(ROOT_PATH, "app")
+      },
       {
         test: /\.css$/,
         loaders: [ "style", "css" ]
@@ -30,7 +39,18 @@ const common = {
 const mergeConfig = merge.bind(null, common)
 
 if (TARGET === "build") {
-  module.exports = mergeConfig({})
+  module.exports = mergeConfig({
+    plugins: [
+      new webpack.DefinePlugin({
+        "process.env": {
+          "NODE_ENV": JSON.stringify("production"),
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: { warnings: false },
+      })
+    ]
+  })
 }
 
 if (TARGET === "dev") {
