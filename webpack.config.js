@@ -11,6 +11,13 @@ const common = {
     filename: "bundle.js",
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "jscs-loader"
+      }
+    ],
     loaders: [
       {
         test: /\.css$/,
