@@ -7,13 +7,11 @@ export default class App extends React.Component {
     super(props)
 
     this.state = {
-      notes: [{
-        task: "Learn Webpack"
-      }, {
-        task: "Learn React"
-      }, {
-        task: "Do something good"
-      }]
+      notes: [
+        { task: "Learn Webpack" },
+        { task: "Learn React" },
+        { task: "Do something good" }
+      ]
     }
   }
 
@@ -29,7 +27,7 @@ export default class App extends React.Component {
     let notes = this.state.notes
 
     if (task) {
-      notes[i].task = task
+      notes[ i ].task = task
     } else {
       notes = notes.slice(0, i).concat(notes.slice(i + 1))
     }
