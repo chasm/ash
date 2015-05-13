@@ -1,38 +1,30 @@
 import React from "react"
 import Notes from "./notes"
+import NoteActions from "../actions/note"
+import NoteStore from "../stores/note"
 
+import connect from "../decorators/connect"
+import persist from "../decorators/persist"
+import storage from "../libs/storage"
+
+@persist(NoteActions.init, NoteStore, storage, "notes")
+@connect(NoteStore)
 export default class App extends React.Component {
 
   constructor (props) {
     super(props)
-
-    this.state = {
-      notes: [
-        { task: "Learn Webpack" },
-        { task: "Learn React" },
-        { task: "Do something good" }
-      ]
-    }
   }
 
   addItem () {
-    this.setState({
-      notes: this.state.notes.concat([
-        { task: "New task" }
-      ])
-    })
+    NoteActions.create("New task")
   }
 
-  itemEdited(i, task) {
-    let notes = this.state.notes
-
+  itemEdited(id, task) {
     if (task) {
-      notes[ i ].task = task
+      NoteActions.update(id, task)
     } else {
-      notes = notes.slice(0, i).concat(notes.slice(i + 1))
+      NoteActions.remove(id)
     }
-
-    this.setState({ notes: notes })
   }
 
   render () {

@@ -12,30 +12,14 @@ const common = {
   },
   output: {
     path: path.resolve(ROOT_PATH, "build"),
-    filename: "bundle.js",
+    filename: "bundle.js"
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.jsx?$/,
-        loader: "eslint-loader!jscs-loader",
-        include: path.join(ROOT_PATH, "app")
-      }
-    ],
     loaders: [
       {
-        entry: [ "webpack/hot/dev-server" ],
-        test: /\.jsx?$/,
-        loader: "react-hot-loader!babel-loader!flowcheck-loader",
-        include: path.join(ROOT_PATH, "app")
-      },
-      {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loaders: [ "style", "css" ]
       }
-    ],
-    plugins: [
-      new webpack.NoErrorsPlugin()
     ]
   }
 }
@@ -44,14 +28,23 @@ const mergeConfig = merge.bind(null, common)
 
 if (TARGET === "build") {
   module.exports = mergeConfig({
+    module: {
+      loaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: [ "babel?stage=0" ],
+          include: path.join(ROOT_PATH, "app")
+        }
+      ]
+    },
     plugins: [
       new webpack.DefinePlugin({
         "process.env": {
-          "NODE_ENV": JSON.stringify("production"),
+          "NODE_ENV": JSON.stringify("production")
         }
       }),
       new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false },
+        compress: { warnings: false }
       })
     ]
   })
@@ -59,6 +52,25 @@ if (TARGET === "build") {
 
 if (TARGET === "dev") {
   module.exports = mergeConfig({
-    entry: [ "webpack/hot/dev-server" ]
+    entry: [ "webpack/hot/dev-server" ],
+    module: {
+      preLoaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: [ "eslint-loader", "jscs" ],
+          include: path.join(ROOT_PATH, "app")
+        }
+      ],
+      loaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: [ "react-hot", "babel", "flowcheck", "babel?stage=0&blacklist=flow" ],
+          include: path.join(ROOT_PATH, "app")
+        }
+      ]
+    },
+    plugins: [
+      new webpack.NoErrorsPlugin()
+    ]
   })
 }

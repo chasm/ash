@@ -31,12 +31,12 @@ export default class Note extends React.Component {
     let task = this. props.task
 
     return <div>{
-      edited
-        ? <input type="text"
+      edited ?
+        <input type="text"
           defaultValue={task}
           onBlur={this.finishEdit.bind(this)}
-          onKeyPress={this.checkEnter.bind(this)} />
-        : <div onClick={this.edit.bind(this)}>{task}</div>
+          onKeyPress={this.checkEnter.bind(this)} /> :
+        <div onClick={this.edit.bind(this)}>{task}</div>
     }</div>
   }
 }

@@ -17,6 +17,7 @@
     "no-multiple-empty-lines": true,
     "no-underscore-dangle": false,
     "no-use-before-define": false,
+    "no-unused-vars": false,
     "quotes": [ 2, "double" ],
     "react/jsx-boolean-value": 1,
     "react/jsx-quotes": 1,
