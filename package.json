@@ -25,9 +25,12 @@
     "eslint-loader": "^0.11.2",
     "eslint-plugin-react": "^2.2.0",
     "esprima-fb": "^15001.1.0-dev-harmony-fb",
+    "flowcheck": "^0.2.6",
+    "flowcheck-loader": "^1.0.0",
     "jscs": "^1.13.1",
     "jscs-loader": "0.0.5",
     "lodash": "^3.8.0",
+    "react-hot-loader": "^1.2.7",
     "style-loader": "^0.12.2"
   }
 }

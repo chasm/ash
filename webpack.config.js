@@ -24,14 +24,18 @@ const common = {
     ],
     loaders: [
       {
+        entry: [ "webpack/hot/dev-server" ],
         test: /\.jsx?$/,
-        loader: "babel-loader",
+        loader: "react-hot-loader!babel-loader!flowcheck-loader",
         include: path.join(ROOT_PATH, "app")
       },
       {
         test: /\.css$/,
         loader: "style-loader!css-loader"
       }
+    ],
+    plugins: [
+      new webpack.NoErrorsPlugin()
     ]
   }
 }
